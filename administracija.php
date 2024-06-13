@@ -86,8 +86,8 @@ if (isset($_SESSION['username'])) {
     echo '<h1>Administracija korisnika</h1>';
     echo '<table  border="1">
           <tr>
-            <th>Ime</th>
-            <th>Prezime</th>
+            <th>Naslov</th>
+            <th></th>
           </tr>';
 
     while ($row = mysqli_fetch_array($result)) {
