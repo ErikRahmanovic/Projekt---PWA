@@ -66,7 +66,7 @@ if(isset($_GET['kategorija'])) {
             echo "<div style='margin-bottom: 20px;'>"; 
             echo "<h2 style='font-size: 24px;'>" . $row["naslov"]. "</h2>"; 
 
-            // Provera da li postoji slika
+            
             $slika_putanja = 'slike/' . $row["slika"]; 
             if (!empty($row["slika"]) && file_exists($slika_putanja)) {
                 echo "<img src='" . $slika_putanja. "' alt='Slika' style='max-width: 100%; height: auto;'>"; 
