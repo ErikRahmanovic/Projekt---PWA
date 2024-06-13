@@ -75,7 +75,7 @@ footer p {
 <script type="text/javascript">
     document.getElementById("slanje").onclick = function(event) {
     var slanjeForme = true;
-    // Ime korisnika mora biti uneseno
+    
     var poljeIme = document.getElementById("ime");
     var ime = document.getElementById("ime").value;
     if (ime.length == 0) {
@@ -86,7 +86,7 @@ footer p {
     poljeIme.style.border="1px solid green";
     document.getElementById("porukaIme").innerHTML="";
     }
-    // Prezime korisnika mora biti uneseno
+    
     var poljePrezime = document.getElementById("prezime");
     var prezime = document.getElementById("prezime").value;
     if (prezime.length == 0) {
@@ -109,7 +109,7 @@ footer p {
     poljeUsername.style.border="1px solid green";
     document.getElementById("porukaUsername").innerHTML="";
     }
-    // Provjera podudaranja lozinki
+    
     var poljePass = document.getElementById("pass");
     var pass = document.getElementById("pass").value;
     var poljePassRep = document.getElementById("passRep");
@@ -141,16 +141,16 @@ footer p {
 
 
 <?php
-include 'connect.php'; // Ensure this file contains mysqli_connect() or equivalent
+include 'connect.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ime = $_POST['firstname'];
     $prezime = $_POST['lastname'];
     $username = $_POST['username'];
     $lozinka = $_POST['password'];
-    $hashed_password = password_hash($lozinka, PASSWORD_DEFAULT); // Use PASSWORD_DEFAULT for hashing
+    $hashed_password = password_hash($lozinka, PASSWORD_DEFAULT); 
 
-    // Check if username already exists
+    
     $sql = "SELECT korisnicko_ime FROM korisnik WHERE korisnicko_ime = ?";
     $stmt = mysqli_stmt_init($dbc);
     if (mysqli_stmt_prepare($stmt, $sql)) {
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(mysqli_stmt_num_rows($stmt) > 0){
             $msg = 'Korisničko ime već postoji!';
         } else {
-            // Insert new user if username doesn't exist
+            
             $sql = "INSERT INTO korisnik (ime, prezime, korisnicko_ime, lozinka, razina) VALUES (?, ?, ?, ?, 0)";
             $stmt = mysqli_stmt_init($dbc);
             if (mysqli_stmt_prepare($stmt, $sql)) {
