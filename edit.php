@@ -3,37 +3,37 @@ include 'connect.php';
 
 define('UPLPATH', 'slike/');
 
-// Check if ID is provided
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     
-    // Fetch article details based on ID
+    
     $query = "SELECT * FROM vijesti WHERE id=$id";
     $result = mysqli_query($dbc, $query);
     
-    // Check if article exists
+    
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
     } else {
-        // Handle case where article with given ID does not exist
+       
         echo "Article with ID=$id does not exist.";
-        exit(); // Or handle as per your application's logic
+        exit(); 
     }
 }
 
-// Handle form submissions
+
 if (isset($_POST['delete'])) {
-    // Handle delete operation
+    
     $id = $_POST['id'];
     $query = "DELETE FROM vijesti WHERE id=$id";
     mysqli_query($dbc, $query);
-    // Redirect or display message after delete
-    header("Location: administracija.php"); // Example redirect
+   
+    header("Location: administracija.php"); 
     exit();
 }
 
 if (isset($_POST['update'])) {
-    // Handle update operation
+   
     $id = $_POST['id'];
     $title = $_POST['title'];
     $about = $_POST['about'];
@@ -50,8 +50,8 @@ if (isset($_POST['update'])) {
 
     $query = "UPDATE vijesti SET naslov='$title', sazetak='$about', tekst='$content', slika='$picture', kategorija='$category', arhiva='$archive' WHERE id=$id";
     mysqli_query($dbc, $query);
-    // Redirect or display message after update
-    header("Location: administracija.php"); // Example redirect
+    
+    header("Location: administracija.php"); 
     exit();
 }
 ?>
